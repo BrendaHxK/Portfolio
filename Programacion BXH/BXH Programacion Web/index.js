@@ -382,116 +382,125 @@ function RepetirMensaje(cantidad) {
 }
 RepetirMensaje(20)
 
-class Soldado {
-  constructor(nombre, edad, rango, vehiculoAsignado) {
-    this.nombre = nombre;
-    this.edad = edad;
-    this.rango = rango;
-    this.vehiculoAsignado = vehiculoAsignado;
-  }
-  disparar() {
-    return console.log(
-      `El soldado ${this.nombre} está disparando`
-    );
-  }
-}
+/*
+- Crear una clase soldado que tenga las propiedades nombre, edad, rango, vehiculoAsignado y el método "disparar".
+- Crear una clase sargento que extienda de la clase soldado, con las propiedades numeroCompania, soldadosACargo, y el método "dar orden".
+- Crear un clase vehiculoMilitar con las propiedades cantRuedas, cantSoldados, velocidadPromedio y el método movilizar.
+- Crear las clases tanque y camión que extiendan de vehiculoMilitar. Tanque debe tener las propiedades artillero, conductor, cantMunicion y espesorBlindaje, y el metodo disparar y recarga. Camión debe tener  las propiedades soldadosTransportados, cantCombustible, destino y el método comunicarDestino.
+- Crear la clase capitán que extienda de sargento, con las propiedades nombrePeloton, cantMedallas, y el método armarEstrategia.
+
+class Soldado { 
+  constructor(nombre, edad, rango, vehiculoAsignado) { 
+      this.nombre = nombre; 
+      this.edad = edad; 
+      this.rango = rango; 
+      this.vehiculoAsignado = vehiculoAsignado; 
+  } 
+  disparar() { 
+      return (`${this.nombre} disparó!`); 
+  } 
+} 
+
+console.log(`Estos soldados van a disparar. \n\n`);
+
+let soldado1 = new Soldado("Juan", 25, "Soldado", "tanque"); 
+let soldado2 = new Soldado("Pedro", 27, "Soldado", "avión"); 
+let soldado3 = new Soldado("Carlos", 30, "Soldado", "Barco"); 
+let soldado4 = new Soldado("Martin", 29, "Soldado", "tanque"); 
+let soldados = [soldado1, soldado2, soldado3, soldado4];
+
+soldados.forEach(soldado => {
+  console.log(soldado.disparar());
+});
+
+/*- Crear una clase sargento que extienda de la clase soldado, con las propiedades numeroCompania, soldadosACargo, y el método "dar orden".
 
 class Sargento extends Soldado {
-  constructor(
-    nombre,
-    edad,
-    rango,
-    vehiculoAsignado,
-    numCompania,
-    soldadosACargo
-  ) {
-    super(nombre, edad, rango, vehiculoAsignado);
-    this.compania = numCompania;
-    this.aCargo = soldadosACargo;
+  constructor(nombre, edad, rango, vehiculoAsignado, numeroCompania, soldadosACargo) {
+  super(nombre, edad, rango, vehiculoAsignado);
+  this.numeroCompania = numeroCompania;
+  this.soldadosACargo = soldadosACargo;
   }
-  ordenar() {
-    return console.log(`El sargento ${this.nombre} da una orden`);
+  darOrden() {
+      return `${this.nombre} esta ordenando.`;
+      }
+  }
+
+let sargento1 = new Sargento ("Hugo", 50, "sargento", "tanque", 12, 20);
+let sargento2 = new Sargento ("Charles", 45, "sargento", "avion", 18, 5);
+let sargento3 = new Sargento ("Alberto", 42, "sargento", "submarino", 1, 50);
+let sargentos = [sargento1, sargento2, sargento3];
+
+console.log("Estos sargentos estan dando ordenes.\n\n");
+
+sargentos.forEach(sargento => {
+  console.log(sargento.darOrden()); 
+});
+
+
+class vehiculoMilitar {
+  constructor (tipoVehiculo, cantRuedas, cantSoldados, velocidadPromedio) {
+      this.tipoVehiculo = tipoVehiculo;
+      this.cantRuedas = cantRuedas;
+      this.cantSoldados = cantSoldados;
+      this.velocidadPromedio = velocidadPromedio;
+  }
+  movilizar(){
+      return (`${this.tipoVehiculo} se esta movilizando`);
+  }
+}
+let vehiculoMilitar1 = new vehiculoMilitar ("tanque","10 ruedas", "6 soldados", "velocidad: 60km/h");
+let vehiculoMilitar2 = new vehiculoMilitar ("Camión", "4 ruedas", "4 soldados", "velocidad: 40km/h");
+
+console.log(vehiculoMilitar2.movilizar());
+
+class tanque extends vehiculoMilitar {
+  constructor(tipoVehiculo, cantRuedas, cantSoldados, velocidadPromedio, artillero, conductor, cantMunicion, espesorBlindaje){
+  super(tipoVehiculo, cantRuedas, cantSoldados, velocidadPromedio);
+  this.artillero = artillero;
+  this.conductor = conductor;
+  this.cantMunicion = cantMunicion;
+  this.espesorBlindaje = espesorBlindaje;    
+  }
+  disparar(){
+      return(`${this.artillero} está disparando`);
+  }
+  recargar(){
+      return (`${this.conductor} esta recargando ${this.cantMunicion} municiones`);
   }
 }
 
-class VehiculoMilitar {
-  constructor(cantRuedas, cantSoldados, velocidadPromedio) {
-    this.tamano = cantRuedas;
-    this.soldados = cantSoldados;
-    this.velocidad = velocidadPromedio;
+let tanque1 = new tanque ("tanque", 20, 6, "60km/h", "Pedro", "Hernesto", 30, "5kg");
+console.log(tanque1.disparar());
+console.log(tanque1.recargar());
+
+class Camion extends vehiculoMilitar {
+  constructor(tipoVehiculo, cantRuedas, cantSoldados, velocidadPromedio, soldadosTransportados, cantCombusible, destino){
+  super(tipoVehiculo, cantRuedas, cantSoldados, velocidadPromedio);    
+  this.soldadosTransportados = soldadosTransportados;
+  this.cantCombusible = cantCombusible;
+  this.destino = destino;    
   }
-  movilizar() {
-    return console.log(`El vehiculo se está movilizando`);
+  comunicarDestino(){
+      return (`${this.tipoVehiculo} se está dirigiendo a ${this.destino}`)
+  };
+}
+
+let camion1 = new Camion ("Camión", 10, 8, "100km/h", "Juan, Pedro, Matías, Lucas", "40L", "Alemania");
+console.log(camion1.comunicarDestino());
+
+class Capitan extends Sargento {
+  constructor (nombre, edad, rango, vehiculoAsignado, numeroCompania, soldadosACargo, nombrePeloton, cantMedallas){
+      super(nombre, edad, rango, vehiculoAsignado, numeroCompania, soldadosACargo)
+  this.nombrePeloton = nombrePeloton;
+  this.cantMedallas = cantMedallas;
+  }
+  armarEstrategia(){
+      return (`${this.nombrePeloton} está armando la estrategia`);
   }
 }
 
-class Tanque extends VehiculoMilitar {
-  constructor(
-    cantRuedas,
-    cantSoldados,
-    velocidadPromedio,
-    artillero,
-    conductor,
-    cantMunicion,
-    espesorBlindaje
-  ) {
-    super(cantRuedas, cantSoldados, velocidadPromedio);
-    this.disparador = artillero;
-    this.manejador = conductor;
-    this.municion = cantMunicion;
-    this.blindaje = espesorBlindaje;
-  }
-  disparar() {
-    return console.log(`El vehiculo ha disparado`);
-  }
-  recargar() {
-    return console.log(`El vehiculo ha recargado`);
-  }
-}
+let capitan1 = new Capitan ("Juan", 30, "sargento", "submarino", 2, 45, "Pelotón mapache", 6);
 
-class Camion extends VehiculoMilitar {
-  constructor(
-    cantRuedas,
-    cantSoldados,
-    velocidadPromedio,
-    soldadosTransportados,
-    cantCombustible,
-    destino
-  ) {
-    super(cantRuedas, cantSoldados, velocidadPromedio);
-    this.transportados = soldadosTransportados;
-    this.combustible = cantCombustible;
-    this.lugar = destino;
-  }
-  comunicarDestino() {
-    return console.log(`El camión se dirige a ${this.lugar}`);
-  }
-}
-
-class Capitan extends Soldado {
-  constructor(nombre, edad, rango, nombrePeloton, cantMedalla) {
-    super(nombre, edad, rango);
-    this.peloton = nombrePeloton;
-    this.medallas = cantMedalla;
-  }
-  armarEstrategia() {
-    return console.log(`${nombre} arma la estrategia re piola`);
-  }
-}
-
-let soldado1 = new Soldado("Robert", 32, "raso", null);
-let soldado2 = new Soldado("Carl", 23, "raso", null);
-let soldado3 = new Soldado("Weber", 42, "raso", null);
-let soldado4 = new Soldado("Agustin", 22, "raso", null);
-let soldado5 = new Soldado("Maverick", 18, "raso", null);
-
-console.log(soldado1);
-
-let sargento1 = new Sargento("Pedro", 45, "sargento", "Hydra", 42, [
-  soldado1,
-  soldado3,
-  soldado4,
-]);
-
-console.log(sargento1);
+console.log(capitan1.armarEstrategia());
 */
