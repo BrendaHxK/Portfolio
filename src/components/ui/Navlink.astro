@@ -1,8 +1,8 @@
 ---
 import "../../styles/global.css";
-const {ruta} = Astro.props;
+const { ruta, class: className } = Astro.props;
 ---
 
-<a href={ruta}>
-    </slot>
+<a href={ruta} class={className}>
+  <slot />
 </a>

@@ -1,19 +1,25 @@
 ---
 import Navlink from "./ui/Navlink.astro";
-
 ---
-<nav class="w-full p-8">
-    <ul class="flex justify-between max-w-3x1 mx-auto w-full">
-        <li class="">
-            <Navlink ruta = "/"/>Home</Navlink>
-            
-        </li>
-        <li>
-            <Navlink ruta = "/about"/>Acerca</Navlink>
-            
-        </li>
-        <li>
-            <Navlink ruta = "/account"/>Mi cuenta</Navlink>         
-        </li>
-    </ul>
-</nav>
+
+<div class="w-full h-16 mb-8 bg-[#5A3E8D]">
+  <ul
+    class="flex justify-end items-center space-x-4 max-w-3xl mx-auto h-full w-full mr-20"
+  >
+    <li>
+      <Navlink ruta="/" class="text-xl text-center items-end text-white"
+        >Inicio</Navlink
+      >
+    </li>
+    <li>
+      <Navlink ruta="/services" class="text-xl text- items-end text-white"
+        >Servicios</Navlink
+      >
+    </li>
+    <li>
+      <Navlink ruta="/contact" class="text-xl text-center items-end text-white"
+        >Contacto</Navlink
+      >
+    </li>
+  </ul>
+</div>

@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
-
 const { title } = Astro.props;
 ---
 
@@ -13,12 +12,13 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body
-    class="flex flex-col justify-between items-center w-screen h-screen bg-gradient-left from-white to-[#6a00f4]"
-  >
-    <Navbar />
-    <div class="w-full h-full">
-      <slot />
+  <body class="flex flex-col justify-between
+    items-center w-screen h-screen">
+    <div
+      class="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]"
+    >
     </div>
+    <Navbar />
+    <slot />
   </body>
 </html>
