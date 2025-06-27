@@ -12,13 +12,15 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="flex flex-col justify-between
-    items-center w-screen h-screen">
+  <body class="flex flex-col justify-between items-center w-full h-full">
     <div
       class="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]"
     >
     </div>
     <Navbar />
-    <slot />
+    <div class="h-full w-full flex">
+      <slot />
+    </div>
+
   </body>
 </html>
